@@ -41,6 +41,7 @@ class RestaurantPageController extends Controller
         $restaurant->cleanliness = $cleanliness;
         $restaurant->money = $money;
         $restaurant->address = $address;
+        $restaurant->thoughts = "";
         $restaurant->user_id = Auth::id();
         $restaurant->save();
 
