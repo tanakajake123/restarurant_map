@@ -1,22 +1,38 @@
-<!-- Image Showcases -->
-<section class="showcase">
-   <div class="container-fluid p-0">
-      <div class="row no-gutters">
-         <div class="col-lg-6 order-lg-1 my-auto showcase-text">
-            <h2>Recipe Index</h2>
+@extends('layouts.app')
 
-            @foreach($restaurant_list as $restaurant)
-            <p>
-               {{ $restaurant->id }}
-               {{ $restaurant->name }}
+@section('content')
+<div class="container">
+   <div class="row no-gutters">
+      <div class="col-lg-6 order-lg-1 mx-auto showcase-text">
 
-               <a href="{{ route('restaurant.show', $restaurant->id) }}" class="btn btn-primary">Detail</a>
-               <a href="{{ route('restaurant.edit', $restaurant->id) }}" class="btn btn-success">Edit</a>
-               <a href="{{ route('restaurant.confirm', $restaurant->id) }}" class="btn btn-danger">Delete</a>
-               </p>
-            @endforeach
+         <h2>レストラン一覧</h2>
 
+         <div class="mb-3 text-right">
+            <a class="btn btn-primary" href="{{url('/restaurant/create')}}">
+               <i class="fas fa-pen"></i> 新規作成
+            </a>
          </div>
+
+         <ul class="list-group">
+         @foreach($restaurant_list as $restaurant)
+         <li class="list-group-item">
+            <div class="row">
+               <div class="col">
+                  レストラン名：{{ $restaurant->name }}
+               </div>
+               <div class="col text-right">
+                  <a href="{{ route('restaurant.show', $restaurant->id) }}" class="btn btn-primary">Detail</a>
+                  <a href="{{ route('restaurant.edit', $restaurant->id) }}" class="btn btn-success">Edit</a>
+                  <a href="{{ route('restaurant.confirm', $restaurant->id) }}" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Delete</a>
+               </div>
+            </div>
+         </li>
+         @endforeach
+         </ul>
+
+
       </div>
    </div>
-</section>
+
+</div>
+@endsection
